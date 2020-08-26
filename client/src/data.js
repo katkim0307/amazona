@@ -1,6 +1,7 @@
 export default {
     products: [
         {
+            _id: '1',
             name: 'Mini Handheld Portable Fan',
             category: 'Summer',
             image: 'fan1.jpg',
@@ -8,8 +9,10 @@ export default {
             brand: 'IPOW',
             rating: 4.8,
             numReviews: 625,
+            description: '',
         },
         {
+            _id: '2',
             name: 'Mini Flexible Tripod Clip On Fan',
             category: 'Summer',
             image: 'fan2.jpg',
@@ -17,8 +20,10 @@ export default {
             brand: 'Amacool',
             rating: 4.9,
             numReviews: 2589,
+            description: '',
         },
         {
+            _id: '3',
             name: 'Portable Neck Fan',
             category: 'Summer',
             image: 'fan3.jpg',
@@ -26,8 +31,10 @@ export default {
             brand: 'IPOW',
             rating: 4.5,
             numReviews: 1623,
+            description: '',
         },
         {
+            _id: '4',
             name: 'Lady Handheld Portable Fan',
             category: 'Summer',
             image: 'https://images-na.ssl-images-amazon.com/images/I/51kxZt06SUL._AC_SL1000_.jpg',
@@ -35,6 +42,7 @@ export default {
             brand: 'IPOW',
             rating: 4.4,
             numReviews: 869,
+            description: '',
         },
     ]
 }
