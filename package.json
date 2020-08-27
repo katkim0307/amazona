@@ -1,0 +1,30 @@
+{
+  "name": "amazona",
+  "version": "1.0.0",
+  "description": "e-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch server --exec babel-node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katkim0307/amazona.git"
+  },
+  "author": "Kat Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katkim0307/amazona/issues"
+  },
+  "homepage": "https://github.com/katkim0307/amazona#readme",
+  "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
