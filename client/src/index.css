@@ -194,6 +194,7 @@ body {
 
 .button {
   padding: 1rem;
+  background-color: #f0c040;
   border: .1rem #808080 solid;
   border-radius: .5rem;
   cursor: pointer;
@@ -203,13 +204,13 @@ body {
   border: .1rem #404040 solid;
 }
 
-.button.primary {
+/* .button.primary {
   background-color: #f0c040;
 }
 
 .button.secondary {
   background-color: #f0f0f0;;
-}
+} */
 
 
 a {

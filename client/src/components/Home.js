@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data';
+import axios from 'axios';
 
 export default function Home(props) {
     // console.log(data.products);
+
+    // define an express hook
+    const [products, setProduct] = useState([]);
+
+    // fetch data from server
+    useEffect(() => {
+        // EFFECT: only run at componentDidMount()
+        const fetchData = async () => {
+            const { data } = await axios.get("/api/products");
+            setProduct(data);
+        }
+        fetchData();
+
+        return () => {
+            // CLEANUP
+        };
+    }, [/*input*/]);
+
     return (
         <div>
             <ul className="products">
                 {
-                    data.products.map(product =>
+                    products.map(product =>
                         <li key={product._id}>
                             <div className="product">
                                 <Link to={'/product/' + product._id}><img className="product-image" src={product.image} alt="product" /></Link>
