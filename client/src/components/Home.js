@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { listProducts } from '../actions/productActions';
 
 export default function Home(props) {
     // console.log(data.products);
 
-    // define an express hook
-    const [products, setProduct] = useState([]);
-
-    // fetch data from server
+    // if using an express hook
+    /* const [products, setProduct] = useState([]);
     useEffect(() => {
-        // EFFECT: only run at componentDidMount()
         const fetchData = async () => {
             const { data } = await axios.get("/api/products");
             setProduct(data);
         }
         fetchData();
+        
+        return () => {};
+    }, []);*/
+
+    const productList = useSelector(state => state.productList);
+    const { products, loading, error } = productList;
+    const dispatch = useDispatch();
+
+    // fetch data from server
+    useEffect(() => {
+        // EFFECT: only run at componentDidMount()
+        dispatch(listProducts());  // actions
 
         return () => {
             // CLEANUP
@@ -23,6 +34,8 @@ export default function Home(props) {
     }, [/*input*/]);
 
     return (
+        loading ? <div>Loading...</div> : 
+        error ? <div>{error}</div> : 
         <div>
             <ul className="products">
                 {
