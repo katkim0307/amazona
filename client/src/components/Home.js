@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+// import data from '../data';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 
@@ -20,6 +20,7 @@ export default function Home(props) {
     }, []);*/
 
     const productList = useSelector(state => state.productList);
+    // console.log(productList);
     const { products, loading, error } = productList;
     const dispatch = useDispatch();
 
