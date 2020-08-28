@@ -10,6 +10,7 @@ export default {
             rating: 4.8,
             numReviews: 625,
             description: '',
+            countInStock: 0,
         },
         {
             _id: '2',
@@ -21,6 +22,7 @@ export default {
             rating: 4.9,
             numReviews: 2589,
             description: '',
+            countInStock: 7,
         },
         {
             _id: '3',
@@ -32,6 +34,7 @@ export default {
             rating: 4.5,
             numReviews: 1623,
             description: '',
+            countInStock: 10,
         },
         {
             _id: '4',
@@ -43,6 +46,7 @@ export default {
             rating: 4.4,
             numReviews: 869,
             description: '',
+            countInStock: 8,
         },
     ]
 }
