@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Home, Product } from './components/';
+import { Home, Product, Cart } from './components/';
 
 function App() {
   const openMenu = () => {
@@ -16,14 +16,12 @@ function App() {
       <div className="grid-container">
         <header className="header">
           <div className="brand">
-            <button onClick={openMenu}>
-              &#9776;
-          </button>
-          <Link to="/">amazona</Link>
+            <button onClick={openMenu}>&#9776;</button>
+            <Link to="/">amazona</Link>
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart </a>
-            <a href="login.html">Login</a>
+            <Link to="/cart">Cart</Link>
+            <Link to="/login">Login</Link>
           </div>
         </header>
         <aside className="sidebar">
@@ -38,6 +36,7 @@ function App() {
           <div className="content">
             <Route path="/" exact={true} component={Home} />
             <Route path="/product/:id" component={Product} />
+            <Route path="/cart/:id?" component={Cart} />
           </div>
         </main>
         <footer className="footer">

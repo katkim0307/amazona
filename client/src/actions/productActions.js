@@ -1,13 +1,13 @@
 import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
     PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL} from "../constants/productConstants";
-import axios from 'axios';
+import Axios from 'axios';
 
 const listProducts = () => async (dispatch) => {
     try {
         // action 1 - request
         dispatch({ type: PRODUCT_LIST_REQUEST });
         // send ajax request to the server
-        const { data } = await axios.get('api/products');
+        const { data } = await Axios.get('api/products');
 
         // action 2 - if success
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
@@ -21,7 +21,7 @@ const listProducts = () => async (dispatch) => {
 const describeProduct = (productId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-        const { data } = await axios.get('/api/products/' + productId);
+        const { data } = await Axios.get('/api/products/' + productId);
 
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
     }
