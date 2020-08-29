@@ -22,6 +22,10 @@ export default function Cart(props) {
         dispatch(deleteFromCart(productId));
     };
 
+    const handleCheckout = () => {
+        props.history.push("/login?redirect=shipping");
+    }
+
     return (
         <div className="cart">
             <div className="cart-list">
@@ -63,7 +67,7 @@ export default function Cart(props) {
                     Subtotal ({cartItems.reduce((total, current) => total + current.qty, 0)} items)
                     : ${cartItems.reduce((total, current) => total + current.price * current.qty, 0)}
                 </h3>
-                <button className="button primary" disabled={cartItems.length === 0}>Checkout</button>
+                <button className="button primary" disabled={cartItems.length === 0} onClick={handleCheckout}>Checkout</button>
             </div>
         </div>
     );
