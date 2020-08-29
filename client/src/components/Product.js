@@ -21,7 +21,7 @@ export default function Product(props) {
     useEffect(() => {
         dispatch(describeProduct(props.match.params.id));
         return () => { };
-    }, []);
+    }, [dispatch]);
 
     const handleAddToCart = () => {
         props.history.push('/cart/' + props.match.params.id + '?qty=' + qty);

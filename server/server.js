@@ -3,6 +3,7 @@ import data from './data';
 import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute';
 
 dotenv.config();
@@ -14,8 +15,8 @@ mongoose.connect(mongodbUrl, {
 }).catch(err => console.log(err.reason));
 
 const app = express();
-const port = 4000;
 
+app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 
 app.get('/api/products', (req, res) => {
@@ -31,6 +32,6 @@ app.get('/api/products/:id', (req, res) => {
         res.status(404).send({msg: "Product Not Found"});
 });
 
-app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+app.listen(config.PORT, () => {
+    console.log(`Server started at http://localhost:${config.PORT}`);
 })

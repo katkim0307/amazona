@@ -32,7 +32,7 @@ export default function Home(props) {
         return () => {
             // CLEANUP
         };
-    }, [/*input*/]);
+    }, [dispatch]);
 
     return (
         loading ? <div>Loading...</div> : 

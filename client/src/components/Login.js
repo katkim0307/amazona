@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../actions/userActions';
 
 export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const userLogin = useSelector(state => state.userLogin);
+    const { loading, userInfo, error } = userLogin;
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-        return () => {
-
-        };
-    }, []);
+        if(userInfo) {
+            props.history.push('/');
+        }
+        return () => {};
+    }, [userInfo]);
 
     const handleSubmit = e => {
         e.preventDefault();
+        dispatch(login(email, password));
     }
 
     return (
@@ -24,11 +28,15 @@ export default function Login(props) {
                 <ul className="form-container">
                     <li><h2>Login</h2></li>
                     <li>
-                        <label for="email">Email</label>
+                        {loading && <div>Loading...</div>}
+                        {error && <div>{error}</div>}
+                    </li>
+                    <li>
+                        <label htmlFor="email">Email</label>
                         <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} />
                     </li>
                     <li>
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} />
                     </li>
                     <li>
@@ -43,7 +51,7 @@ export default function Login(props) {
                         <button type="submit" className="button secondary"><Link to="/signup">Create your account</Link></button>
                     </li>
                 </ul>
-            </form>     
+            </form>
         </div>
     )
 };

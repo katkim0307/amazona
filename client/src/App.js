@@ -20,7 +20,7 @@ function App() {
             <Link to="/">amazona</Link>
           </div>
           <div className="header-links">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart | </Link>
             <Link to="/login">Login</Link>
           </div>
         </header>
