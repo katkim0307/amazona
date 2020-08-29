@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Home, Product, Cart } from './components/';
+import { Home, Product, Cart, Login } from './components/';
 
 function App() {
   const openMenu = () => {
@@ -37,6 +37,7 @@ function App() {
             <Route path="/" exact={true} component={Home} />
             <Route path="/product/:id" component={Product} />
             <Route path="/cart/:id?" component={Cart} />
+            <Route path="/login" component={Login} />
           </div>
         </main>
         <footer className="footer">
