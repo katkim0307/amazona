@@ -7,6 +7,7 @@ export default function Cart(props) {
 
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
+    // console.log(cartItems);
 
     const productId = props.match.params.id;
     const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
@@ -36,7 +37,7 @@ export default function Cart(props) {
                     </li>
                     {cartItems.length === 0 ? <div>Cart is empty</div> :
                         cartItems.map(item =>
-                            <li key={productId}>
+                            <li key={item.product}>
                                 <div className="cart-image">
                                     <Link to={"/product/" + item.product}><img src={item.image} alt='product' /></Link>
                                 </div>

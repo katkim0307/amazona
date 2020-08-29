@@ -6,6 +6,7 @@ import { login } from '../actions/userActions';
 export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // access userLogin from store.js using useSelector
     const userLogin = useSelector(state => state.userLogin);
     const { loading, userInfo, error } = userLogin;
     const dispatch = useDispatch();

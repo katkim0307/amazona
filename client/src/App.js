@@ -2,8 +2,13 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Home, Product, Cart, Login } from './components/';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin;
+
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
   }
@@ -21,7 +26,7 @@ function App() {
           </div>
           <div className="header-links">
             <Link to="/cart">Cart | </Link>
-            <Link to="/login">Login</Link>
+            {userInfo ? <Link to="/account">{userInfo.name}</Link> : <Link to="/login">Login</Link>}
           </div>
         </header>
         <aside className="sidebar">
