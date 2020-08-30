@@ -26,7 +26,7 @@ function App() {
           </div>
           <div className="header-links">
             <Link to="/cart">Cart | </Link>
-            {userInfo ? <Link to="/account">{userInfo.name}</Link> : <Link to="/login">Login</Link>}
+            {userInfo ? (<Link to="/account">{userInfo.name}</Link>) : (<Link to="/login">Login</Link>)}
           </div>
         </header>
         <aside className="sidebar">

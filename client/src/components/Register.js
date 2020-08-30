@@ -47,7 +47,7 @@ export default function Register(props) {
                     </li>
                     <li>
                         <label htmlFor="rePassword">Re-enter Password</label>
-                        <input type="rePassword" name="rePassword" id="rePassword" onChange={e => setRePassword(e.target.value)} />
+                        <input type="password" name="rePassword" id="rePassword" onChange={e => setRePassword(e.target.value)} />
                     </li>
                     <li>
                         <button type="submit" className="button primary">

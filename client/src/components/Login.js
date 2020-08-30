@@ -30,7 +30,7 @@ export default function Login(props) {
                     <li><h2>Login</h2></li>
                     <li>
                         {loading && <div>Loading...</div>}
-                        {error && <div>{error}</div>}
+                        {error && <div>Invalid email or password.</div>}
                     </li>
                     <li>
                         <label htmlFor="email">Email</label>
