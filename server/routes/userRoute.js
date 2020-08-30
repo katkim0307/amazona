@@ -42,4 +42,28 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/register', async (req, res) => {
+    const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+    });
+
+    const newUser = await user.save();
+
+    if (newUser) {
+        res.send({
+            _id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
+            isAdmin: newUser.isAdmin,
+            // send back a token (identifier that can 
+            // recognize whether or not the next request is authenticated)
+            token: getToken(newUser),
+        });
+    } else {
+        res.status(401).send({ msg: 'Invalid input data.' });
+    }
+});
+
 export default router;
