@@ -5,6 +5,7 @@ import config from './config';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute';
+import productRoute from './routes/productRoute'
 
 dotenv.config();
 const mongodbUrl = config.MONGODB_URL;
@@ -19,6 +20,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 
+/* STATIC ROUTERS FOR GETTING DATA
 app.get('/api/products', (req, res) => {
     res.send(data.products);
 });
@@ -31,6 +33,10 @@ app.get('/api/products/:id', (req, res) => {
     else
         res.status(404).send({msg: "Product Not Found"});
 });
+*/
+
+// IMPLEMENTING FROM MONGODB RATHER THAN STATIC
+app.use('/api/products', productRoute);
 
 app.listen(config.PORT, () => {
     console.log(`Server started at http://localhost:${config.PORT}`);
