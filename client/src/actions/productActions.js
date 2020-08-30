@@ -1,5 +1,8 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
-    PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL} from "../constants/productConstants";
+import {
+    PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
+    PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL,
+    PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL,
+} from "../constants/productConstants";
 import Axios from 'axios';
 
 const listProducts = () => async (dispatch) => {
@@ -30,4 +33,28 @@ const describeProduct = (productId) => async (dispatch) => {
     }
 };
 
-export { listProducts, describeProduct };
+const addProduct = (product) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: PRODUCT_ADD_REQUEST, payload: product });
+        const { userLogin: { userInfo } } = getState();
+        if (!product._id) {
+            const { data } = await Axios.post('/api/products', product, {
+                headers: {
+                    Authorization: 'Bearer ' + userInfo.token,
+                },
+            });
+            dispatch({ type: PRODUCT_ADD_SUCCESS, payload: data });
+        } else {
+            const { data } = await Axios.put('/api/products/' + product._id, product, {
+                headers: {
+                    Authorization: 'Bearer ' + userInfo.token,
+                },
+            });
+            dispatch({ type: PRODUCT_ADD_SUCCESS, payload: data });
+        }
+    } catch (err) {
+        dispatch({ type: PRODUCT_ADD_FAIL, payload: err.message });
+    }
+};
+
+export { listProducts, describeProduct, addProduct };

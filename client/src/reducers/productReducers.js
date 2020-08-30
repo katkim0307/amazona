@@ -1,6 +1,7 @@
 import {
     PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
-    PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL
+    PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL,
+    PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_ADD_FAIL,
 } from "../constants/productConstants";
 
 function productListReducer(state = { products: [] }, action) {
@@ -29,6 +30,19 @@ function productDetailsReducer(state = { product: {} }, action) {
     };
 };
 
+function productAddReducer(state = { product: {} }, action) {
+    switch (action.type) {
+        case PRODUCT_ADD_REQUEST:
+            return { loading: true };
+        case PRODUCT_ADD_SUCCESS:
+            return { loading: false, success: true, product: action.payload };
+        case PRODUCT_ADD_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    };
+};
+
 export {
-    productListReducer, productDetailsReducer,
+    productListReducer, productDetailsReducer, productAddReducer,
 };
