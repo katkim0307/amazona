@@ -37,6 +37,7 @@ const addProduct = (product) => async (dispatch, getState) => {
     try {
         dispatch({ type: PRODUCT_ADD_REQUEST, payload: product });
         const { userLogin: { userInfo } } = getState();
+        // FOR ADDING A NEW ITEM
         if (!product._id) {
             const { data } = await Axios.post('/api/products', product, {
                 headers: {
@@ -44,7 +45,9 @@ const addProduct = (product) => async (dispatch, getState) => {
                 },
             });
             dispatch({ type: PRODUCT_ADD_SUCCESS, payload: data });
-        } else {
+        } 
+        // FOR UPDATING THE ITEM
+        else {
             const { data } = await Axios.put('/api/products/' + product._id, product, {
                 headers: {
                     Authorization: 'Bearer ' + userInfo.token,
