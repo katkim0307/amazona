@@ -51,7 +51,17 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
         }
         return res.status(500).send({ message: 'Error in updating the item.' });
     }
+});
 
+// ROUTER TO DELETE THE PRODUCT
+router.delete('/:id', async(req, res) => {
+    const deletedProduct = await Product.findById(req.params.id);
+    if(deletedProduct) {
+        await deletedProduct.remove();
+        res.send({message: 'Item deleted.'});
+    } else {
+        res.send('Error in deteling the item.');
+    }
 });
 
 export default router;

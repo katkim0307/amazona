@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addProduct, listProducts } from '../actions/productActions';
+import { addProduct, listProducts, deleteProduct } from '../actions/productActions';
 
 export default function Products(props) {
     const [name, setName] = useState('');
@@ -18,13 +18,15 @@ export default function Products(props) {
     const { loading, products, error } = productList;
     const productAdd = useSelector(state => state.productAdd);
     const { loading: loadingAdd, succcess: successAdd, error: errorAdd } = productAdd;
+    const productDelete = useSelector(state => state.productDelete);
+    const { loading: loadingDelete, succcess: successDelete, error: errorDelete } = productDelete;
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (successAdd) { setModalVisible(false); }
         dispatch(listProducts());
         return () => { };
-    }, [successAdd]);
+    }, [successAdd, successDelete]);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -42,6 +44,10 @@ export default function Products(props) {
         setDescription(product.description);
         setCountInStock(product.countInStock);
     };
+
+    const handleDelete = product => {
+        dispatch(deleteProduct(product._id));
+    }
 
     return (
         <div className="content content-margined">
@@ -121,7 +127,7 @@ export default function Products(props) {
                                 <td>
                                     <button className="button" onClick={() => openModal(product)}>Update</button>
                                     {' '}
-                                    <button className="button">Delete</button>
+                                    <button className="button" onClick={() => handleDelete(product)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
