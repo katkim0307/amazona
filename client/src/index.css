@@ -294,6 +294,20 @@ input {
   border-radius: .5rem;
 }
 
+/* ADD/UPDATE/DELETE PRODUCTS */
+.content-margined {
+  margin: 1rem;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.table {
+  width: 100%;
+}
 
 /* APPLY TO ALL */
 
@@ -316,4 +330,16 @@ a:hover {
 li {
   list-style-type: none;
   margin: 0.5rem;
+}
+
+th {
+  text-align: left;
+}
+
+tbody>tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+tr:hover {
+  color: #ffa726;
 }
