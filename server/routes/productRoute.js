@@ -10,6 +10,15 @@ router.get('/', async (req, res) => {
     res.send(products);
 });
 
+router.get('/:id', async (req, res) => {
+    const productId = req.params.id;
+    const product=await Product.findById(productId);
+    if(product) 
+        res.send(product);
+    else
+        res.send(404).send({msg: 'Item not found.'});
+})
+
 // AN API ROUTER TO CREATE A PRODUCT
 router.post('/', isAuth, isAdmin, async (req, res) => {
     const product = new Product({
@@ -54,7 +63,7 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
 });
 
 // ROUTER TO DELETE THE PRODUCT
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', isAuth, isAdmin, async(req, res) => {
     const deletedProduct = await Product.findById(req.params.id);
     if(deletedProduct) {
         await deletedProduct.remove();
