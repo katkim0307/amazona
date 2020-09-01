@@ -12,9 +12,11 @@ export default function Register(props) {
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
 
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+
     useEffect(() => {
         if (userInfo) {
-            props.history.push('/');
+            props.history.push(redirect);
         }
         return () => { };
     }, [userInfo]);
@@ -58,7 +60,9 @@ export default function Register(props) {
                         Already have an account?
                     </li>
                     <li>
-                        <button type="submit" className="button secondary"><Link to="/login">Login</Link></button>
+                        <button type="submit" className="button secondary">
+                            <Link to={redirect === "/" ? "/login" : "login?redirect=" + redirect}>Login</Link>
+                        </button>
                     </li>
                 </ul>
             </form>

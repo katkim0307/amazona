@@ -11,11 +11,13 @@ export default function Login(props) {
     const { loading, userInfo, error } = userLogin;
     const dispatch = useDispatch();
 
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+
     useEffect(() => {
-        if(userInfo) {
-            props.history.push('/');
+        if (userInfo) {
+            props.history.push(redirect);
         }
-        return () => {};
+        return () => { };
     }, [userInfo]);
 
     const handleSubmit = e => {
@@ -49,7 +51,9 @@ export default function Login(props) {
                         New to amazona?
                     </li>
                     <li>
-                        <button type="submit" className="button secondary"><Link to="/register">Create your account</Link></button>
+                        <button type="submit" className="button secondary">
+                            <Link to={redirect === "/" ? "/register" : "/register?redirect=" + redirect}>Create your account</Link>
+                        </button>
                     </li>
                 </ul>
             </form>
