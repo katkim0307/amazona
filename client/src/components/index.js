@@ -5,3 +5,4 @@ export { default as Login } from './Login.js';
 export { default as Register } from './Register.js';
 export { default as Products } from './Products.js';
 export { default as Shipping } from './Shipping.js';
+export { default as CheckoutSteps } from './CheckoutSteps.js';
