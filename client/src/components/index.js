@@ -6,3 +6,4 @@ export { default as Register } from './Register.js';
 export { default as Products } from './Products.js';
 export { default as Shipping } from './Shipping.js';
 export { default as CheckoutSteps } from './CheckoutSteps.js';
+export { default as Payment } from './Payment.js';

@@ -26,6 +26,8 @@ export default function Shipping(props) {
 
         console.log('shipping: ', shipAddress1, shipAddress2, shipCity, shipState, shipZipcode);
         console.log('billing: ', billAddress1, billAddress2, billCity, billState, billZipcode);
+    
+        props.history.push('/payment');
     };
 
     const handleSameAddress = () => {
