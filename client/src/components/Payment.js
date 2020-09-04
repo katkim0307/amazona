@@ -7,11 +7,12 @@ export default function Payment(props) {
     const [paymentMethod, setPaymentMethod] = useState('');
 
     const dispatch = useDispatch();
+    console.log(paymentMethod);
 
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(savePayment(paymentMethod));
-        props.history.push('/order');
+        props.history.push('/placeorder');
     };
 
     return (
