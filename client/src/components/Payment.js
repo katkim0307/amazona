@@ -29,6 +29,9 @@ export default function Payment(props) {
                                 <label htmlFor="paymentMethod">Paypal</label>
                             </div>
                         </li>
+                        <li>
+                            <button type="submit" className="button primary">Next</button>
+                        </li>
                     </ul>
                 </form>
             </div>
