@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Home, Product, Cart, Login, Register, Products, Shipping, Payment } from './components/';
+import { Home, Product, Cart, Login, Register, Products, Shipping, Payment, PlaceOrder } from './components/';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -47,6 +47,7 @@ function App() {
             <Route path="/products" component={Products} />
             <Route path="/shipping" component={Shipping} />
             <Route path="/payment" component={Payment} />
+            <Route path="/placeorder" component={PlaceOrder} />
           </div>
         </main>
         <footer className="footer">
