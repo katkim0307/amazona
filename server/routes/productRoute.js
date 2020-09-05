@@ -6,17 +6,30 @@ const router = express.Router();
 
 // A ROUTER TO GET A LIST OF PRODUCTS (as a user)
 router.get('/', async (req, res) => {
-    const products = await Product.find({});
+    // const category = req.query.category ? { category: req.query.category } : {};
+
+    const searchKeyword = req.query.searchKeyword ?
+        {
+            name: {
+                $regex: req.query.searchKeyword,
+                $options: 'i',
+            },
+        } : {};
+    const sortOrder = req.query.sortOrder ?
+        req.query.sortOrder === 'lowest' ? 
+        { price: -1 } : { price: 1 } : { _id: -1 };
+    
+    const products = await Product.find({...searchKeyword}).sort(sortOrder);
     res.send(products);
 });
 
 router.get('/:id', async (req, res) => {
     const productId = req.params.id;
-    const product=await Product.findById(productId);
-    if(product) 
+    const product = await Product.findById(productId);
+    if (product)
         res.send(product);
     else
-        res.send(404).send({msg: 'Item not found.'});
+        res.send(404).send({ msg: 'Item not found.' });
 })
 
 // AN API ROUTER TO CREATE A PRODUCT
@@ -63,11 +76,11 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
 });
 
 // ROUTER TO DELETE THE PRODUCT
-router.delete('/:id', isAuth, isAdmin, async(req, res) => {
+router.delete('/:id', isAuth, isAdmin, async (req, res) => {
     const deletedProduct = await Product.findById(req.params.id);
-    if(deletedProduct) {
+    if (deletedProduct) {
         await deletedProduct.remove();
-        res.send({message: 'Item deleted.'});
+        res.send({ message: 'Item deleted.' });
     } else {
         res.send('Error in deteling the item.');
     }

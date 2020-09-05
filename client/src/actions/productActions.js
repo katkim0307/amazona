@@ -6,12 +6,17 @@ import {
 } from "../constants/productConstants";
 import Axios from 'axios';
 
-const listProducts = () => async (dispatch) => {
+const listProducts = (
+    searchKeyword = '',
+    sortOrder = '',
+) => async (dispatch) => {
     try {
         // action 1 - request
         dispatch({ type: PRODUCT_LIST_REQUEST });
         // send ajax request to the server
-        const { data } = await Axios.get('api/products');
+        const { data } = await Axios.get(
+            'api/products?searchKeyword=' + searchKeyword + '&sortOrder=' + sortOrder
+        );
 
         // action 2 - if success
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });

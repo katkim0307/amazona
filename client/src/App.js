@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Home, Product, Cart, Login, Register, Products, Shipping, Payment, PlaceOrder } from './components/';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { listProducts } from './actions/productActions';
 
-function App() {
+function App(props) {
 
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
@@ -16,6 +17,24 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open");
   }
 
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(listProducts(category));
+  //   return () => {};
+  // }, [category]);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(listProducts(searchKeyword, sortOrder));
+  };
+
+  const handleSort = e => {
+    setSortOrder(e.target.value);
+    dispatch(listProducts(searchKeyword, sortOrder));
+  };
+
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -23,6 +42,17 @@ function App() {
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
             <Link to="/">amazona</Link>
+          </div>
+          <div className="search-bar">
+            <form onSubmit={handleSubmit}>
+              <input name="searchKeyword" onChange={e=>setSearchKeyword(e.target.value)} />
+              <button type="submit" className="button Primary">Search</button>
+              <select name="sortOrder" onChange={handleSort}>
+                <option value="">Newest</option>
+                <option value="lowest">Lowest</option>
+                <option value="highest">Highest</option>
+              </select>
+            </form>
           </div>
           <div className="header-links">
             <Link to="/cart">Cart | </Link>
