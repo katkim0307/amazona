@@ -12,10 +12,16 @@ export default function PlaceOrder(props) {
         props.history.push('/payment');
     }
 
+    const itemsPrice = cartItems.reduce((total, current) => total + current.price*current.qty, 0);
+    const shippingPrice = 9.99;
+    const taxPrice = itemsPrice * 1.08875;
+    const totalPrice = itemsPrice + shippingPrice + taxPrice;
+
     const dispatch = useDispatch();
     console.log(cart);
 
     const handlePlaceOrder = () => {
+        // CREATE AN ORDER
         props.history.push("/order");
     }
 
@@ -69,11 +75,30 @@ export default function PlaceOrder(props) {
                     </div>
                 </div>
                 <div className="placeorder-action">
-                    <h3>
-                        Subtotal ({cartItems.reduce((total, current) => total + current.qty, 0)} items)
-                    : ${cartItems.reduce((total, current) => total + current.price * current.qty, 0)}
-                    </h3>
-                    <button className="button primary" disabled={cartItems.length === 0} onClick={handlePlaceOrder}>Place Order</button>
+                    <ul>
+                        <div>
+                            <button className="button primary full-width" onClick={handlePlaceOrder}>Place Order</button>
+                        </div>
+                        <li>
+                            <h3>Order Summary</h3>
+                        </li>
+                        <li>
+                            <div>Items</div>
+                            <div>${itemsPrice}</div>
+                        </li>
+                        <li>
+                            <div>Shipping</div>
+                            <div>${shippingPrice}</div>
+                        </li>
+                        <li>
+                            <div>Tax</div>
+                            <div>${taxPrice.toFixed(2)}</div>
+                        </li>
+                        <li>
+                            <div>Order Total</div>
+                            <div>${totalPrice.toFixed(2)}</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

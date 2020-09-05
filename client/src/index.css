@@ -362,6 +362,20 @@ input {
   padding: 1rem;
 }
 
+.placeorder-action > ul > li{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.placeorder-action > ul > li:last-child{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c04000;
+}
+
+.placeorder-action
+
 /* APPLY TO ALL */
 
 .button.primary {
@@ -370,6 +384,10 @@ input {
 
 .button.secondary {
   background-color: #f0f0f0;
+}
+
+.button.full-width {
+  width: 100%
 }
 
 a {
